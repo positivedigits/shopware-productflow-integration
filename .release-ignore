@@ -1,0 +1,11 @@
+.git/
+.git/*
+.github/
+.github/*
+.gitignore
+phpstan.neon
+.php-cs-fixer.dist.php
+.php-cs-fixer.cache
+.release-ignore
+vendor/
+vendor/*
