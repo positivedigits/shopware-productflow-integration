@@ -13,6 +13,12 @@ Installation through composer is preferred.
 composer require positivedigits/shopware-productflow-integration
 ```
 
+Next, install the plugin.
+
+```
+./bin/console plugin:install --activate ProductFlowIntegration
+```
+
 ## Configuration
 After installation, configure the integration in [ProductFlow](https://cloud.productflow.com/marketplace)
 
