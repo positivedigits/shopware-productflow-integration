@@ -1,2 +1,2 @@
 # Shopware ProductFlow Integration
-Implements the missing integration for [ProductFlow's](www.productflow.com/) offers and orders as a custom datamodel connector.
+Implements the missing integration for [ProductFlow's](www.productflow.com/) offers and orders as a custom datamodel connector for [Shopware 6](https://www.shopware.com/en/).
