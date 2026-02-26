@@ -10,24 +10,24 @@ final readonly class CustomerDTO
 {
     public function __construct(
         #[SerializedName('first_name')]
-        public string $firstName,
+        public ?string $firstName = null,
         #[SerializedName('last_name')]
-        public string $lastName,
+        public ?string $lastName = null,
         #[SerializedName('street_name')]
-        public string $streetName,
+        public ?string $streetName = null,
         #[SerializedName('house_number')]
-        public string $houseNumber,
+        public ?string $houseNumber = null,
         #[SerializedName('house_number_addition')]
-        public ?string $houseNumberAddition,
+        public ?string $houseNumberAddition = null,
         #[SerializedName('zip_code')]
-        public string $zipCode,
-        public string $city,
+        public ?string $zipCode = null,
+        public ?string $city = null,
         #[SerializedName('country_code')]
-        public string $countryCode,
+        public ?string $countryCode = null,
         #[SerializedName('company_name')]
-        public ?string $companyName,
+        public ?string $companyName = null,
         #[SerializedName('vat_number')]
-        public ?string $vatNumber,
+        public ?string $vatNumber = null,
     ) {
     }
 }

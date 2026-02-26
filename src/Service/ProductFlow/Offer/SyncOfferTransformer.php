@@ -15,6 +15,7 @@ final readonly class SyncOfferTransformer extends AbstractOfferTransformer
 
         return array_merge(
             [
+                'active' => true,
                 'stock' => $offerRequest->offer->sellableQuantity,
                 'price' => [
                     [

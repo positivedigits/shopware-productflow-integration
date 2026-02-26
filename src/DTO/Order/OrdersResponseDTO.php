@@ -6,11 +6,17 @@ namespace PositiveDigits\DTO\Order;
 
 use Symfony\Component\Serializer\Attribute\SerializedName;
 
-final class OrderResponseDTO
+final class OrdersResponseDTO
 {
     public function __construct(
+        /** @var OrderDTO[] */
         #[SerializedName('data')]
-        public OrderDTO $order,
+        public array $orders = [],
     ) {
+    }
+
+    public function addOrder(OrderDTO $order): void
+    {
+        $this->orders[] = $order;
     }
 }

@@ -33,11 +33,11 @@ final readonly class ProductFlowTokenValidationEventListener
             return;
         }
 
-        $token = $this->getAuthorizationToken($request->headers->get('Authorization'));
+        $token = $this->getAuthorizationToken($request->headers->get('Authorization', ''));
 
         if ($token !== $this->systemConfigService->getString(ProductFlowIntegrationConfig::TOKEN)) {
             $event->setResponse(new JsonResponse(
-                ['error' => 'Unauthorized: Invalid or missing token'],
+                ['message' => 'Unauthorized: Invalid or missing token'],
                 Response::HTTP_UNAUTHORIZED
             ));
         }
