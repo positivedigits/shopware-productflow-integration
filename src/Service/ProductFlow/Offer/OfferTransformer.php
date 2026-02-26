@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PositiveDigits\Service\Offer;
+namespace PositiveDigits\Service\ProductFlow\Offer;
 
 use PositiveDigits\DTO\Offer\OfferRequestDTO;
 use Shopware\Core\Content\Product\ProductEntity;

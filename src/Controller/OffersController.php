@@ -6,7 +6,7 @@ namespace PositiveDigits\Controller;
 
 use PositiveDigits\DTO\Offer\OfferRequestDTO;
 use PositiveDigits\EventListener\ProductFlowTokenValidationEventListener;
-use PositiveDigits\Service\Offer\OfferSyncer;
+use PositiveDigits\Service\ProductFlow\Offer\OfferSyncer;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\PlatformRequest;
 use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
