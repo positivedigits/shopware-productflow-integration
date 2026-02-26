@@ -1,6 +1,6 @@
 {
-    "name": "positivedigits/productflow-integration",
-    "description": "positivedigits/productflow-integration",
+    "name": "positivedigits/shopware-productflow-integration",
+    "description": "positivedigits/shopware-productflow-integration",
     "type": "shopware-platform-plugin",
     "version": "1.0.0",
     "license": "MIT",
