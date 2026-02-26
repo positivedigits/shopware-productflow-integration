@@ -39,11 +39,13 @@ final class OffersController extends AbstractController
     }
 
     #[Route(path: '/offer', name: 'positivedigits.productflow.offers.delete', methods: ['DELETE'])]
-    public function delete(
+    public function unlist(
         #[MapRequestPayload(acceptFormat: JsonEncoder::FORMAT)]
         OfferRequestDTO $offerRequest,
         Context $context,
     ): Response {
+        $this->offerSyncer->unlist($offerRequest, $context);
+
         return new Response();
     }
 }

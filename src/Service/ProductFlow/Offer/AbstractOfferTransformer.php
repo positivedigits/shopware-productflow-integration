@@ -13,7 +13,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
-readonly class OfferTransformer
+abstract readonly class AbstractOfferTransformer
 {
     public function __construct(
         #[Autowire(service: 'product.repository')]
@@ -27,25 +27,10 @@ readonly class OfferTransformer
 
         return [
             'id' => $product->getId(),
-            'stock' => $offerRequest->offer->sellableQuantity,
-            'price' => [
-                [
-                    'currencyId' => $context->getCurrencyId(),
-                    'gross' => $grossPrice = $offerRequest->offer->price / 100,
-                    'net' => round($grossPrice / (1 + ($product->getTax()->getTaxRate() / 100)), 4),
-                    'linked' => true,
-                    'listPrice' => [
-                        'currencyId' => $context->getCurrencyId(),
-                        'gross' => $grossPrice = $offerRequest->offer->basePrice / 100,
-                        'net' => round($grossPrice / (1 + ($product->getTax()->getTaxRate() / 100)), 4),
-                        'linked' => true,
-                    ],
-                ],
-            ],
         ];
     }
 
-    private function getProductBySKU(string $sku, Context $context): ProductEntity
+    protected function getProductBySKU(string $sku, Context $context): ProductEntity
     {
         $criteria = new Criteria()
             ->addFilter(new EqualsFilter('productNumber', $sku))

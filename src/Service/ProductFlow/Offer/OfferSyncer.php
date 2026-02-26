@@ -12,7 +12,10 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 readonly class OfferSyncer
 {
     public function __construct(
-        private OfferTransformer $offerTransformer,
+        #[Autowire(service: SyncOfferTransformer::class)]
+        private AbstractOfferTransformer $syncOfferTransformer,
+        #[Autowire(service: UnlistOfferTransformer::class)]
+        private AbstractOfferTransformer $unlistOfferTransformer,
         #[Autowire(service: 'product.repository')]
         private EntityRepository $productRepository,
     ) {
@@ -20,7 +23,14 @@ readonly class OfferSyncer
 
     public function sync(OfferRequestDTO $offerRequest, Context $context): void
     {
-        $product = $this->offerTransformer->transform($offerRequest, $context);
+        $product = $this->syncOfferTransformer->transform($offerRequest, $context);
+
+        $this->productRepository->update([$product], $context);
+    }
+
+    public function unlist(OfferRequestDTO $offerRequest, Context $context): void
+    {
+        $product = $this->unlistOfferTransformer->transform($offerRequest, $context);
 
         $this->productRepository->update([$product], $context);
     }
