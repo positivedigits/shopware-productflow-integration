@@ -20,7 +20,7 @@ final readonly class ProductFlowTokenValidationEventListener
     ) {
     }
 
-    #[AsEventListener(event: RequestEvent::class)]
+    #[AsEventListener]
     public function validate(RequestEvent $event): void
     {
         if (false === $event->isMainRequest()) {
@@ -33,7 +33,7 @@ final readonly class ProductFlowTokenValidationEventListener
             return;
         }
 
-        $token = $request->headers->get('Authorization');
+        $token = $this->getAuthorizationToken($request->headers->get('Authorization'));
 
         if ($token !== $this->systemConfigService->getString(ProductFlowIntegrationConfig::TOKEN)) {
             $event->setResponse(new JsonResponse(
@@ -41,5 +41,14 @@ final readonly class ProductFlowTokenValidationEventListener
                 Response::HTTP_UNAUTHORIZED
             ));
         }
+    }
+
+    private function getAuthorizationToken(string $header): ?string
+    {
+        if (preg_match('/^Bearer\s+(.*?)$/i', $header, $matches)) {
+            return $matches[1];
+        }
+
+        return null;
     }
 }

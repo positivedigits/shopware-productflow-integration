@@ -13,9 +13,9 @@ final readonly class OfferDTO
         public int $sellableQuantity,
         public int $price,
         #[SerializedName('base_price')]
-        public int $basePrice,
+        public ?int $basePrice = null,
         #[SerializedName('delivery_code')]
-        public string $deliveryCode,
+        public ?string $deliveryCode = null,
         public ?DiscountDTO $discount = null,
     ) {
     }
