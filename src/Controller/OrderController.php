@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace PositiveDigits\Controller;
 
 use PositiveDigits\EventListener\ProductFlowTokenValidationEventListener;
+use PositiveDigits\Routing\ProductFlowRouteScope;
 use PositiveDigits\Service\ProductFlow\Order\OrderStatus;
 use PositiveDigits\Service\ProductFlow\Order\OrderSyncer;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\PlatformRequest;
-use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 #[Route(defaults: [
-    PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID],
+    PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [ProductFlowRouteScope::ID],
     ProductFlowTokenValidationEventListener::TOKEN_VALIDATION_REQUIRED => true,
 ])]
 final class OrderController extends AbstractProductFlowController

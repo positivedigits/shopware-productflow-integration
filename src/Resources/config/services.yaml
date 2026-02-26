@@ -5,3 +5,8 @@ services:
 
   PositiveDigits\:
     resource: '../../'
+
+  PositiveDigits\Routing\ProductFlowRouteScope:
+    autoconfigure: false
+    tags:
+      - shopware.route_scope

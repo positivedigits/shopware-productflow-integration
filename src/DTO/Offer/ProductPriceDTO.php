@@ -16,7 +16,7 @@ class ProductPriceDTO
         public int $basePrice,
         #[SerializedName('delivery_code')]
         public string $deliveryCode,
-        public ?DiscountDto $discount = null,
+        public ?DiscountDTO $discount = null,
     ) {
     }
 }

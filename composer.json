@@ -19,9 +19,11 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.94"
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.1"
     },
     "scripts": {
+        "phpstan": "@php vendor/bin/phpstan analyze",
         "php-cs": "@php vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
         "php-cs-fix": "@php vendor/bin/php-cs-fixer fix --verbose --diff"
     },

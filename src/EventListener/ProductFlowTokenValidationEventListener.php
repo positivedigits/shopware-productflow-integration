@@ -33,7 +33,7 @@ final readonly class ProductFlowTokenValidationEventListener
             return;
         }
 
-        $token = $this->getAuthorizationToken($request->headers->get('Authorization', ''));
+        $token = $this->getAuthorizationToken((string) $request->headers->get('Authorization'));
 
         if ($token !== $this->systemConfigService->getString(ProductFlowIntegrationConfig::TOKEN)) {
             $event->setResponse(new JsonResponse(

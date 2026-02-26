@@ -8,6 +8,9 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final readonly class OrderLineDTO
 {
+    /**
+     * @param string[] $customAttributes
+     */
     public function __construct(
         #[SerializedName('external_identifier')]
         public ?string $externalIdentifier = null,

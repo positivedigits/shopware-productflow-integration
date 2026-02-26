@@ -26,48 +26,50 @@ final readonly class OpenOrderTransformer extends AbstractOrderTransformer
 
         $orderDTO = new OrderDTO(
             name: $orderEntity->getOrderNumber(),
-            currencyCode: $orderEntity->getCurrency()->getIsoCode(),
+            currencyCode: $orderEntity->getCurrency()?->getIsoCode(),
             placedAt: $orderEntity->getOrderDateTime(),
-            email: $customerEntity->getEmail(),
-            phoneNumber: $orderEntity->getBillingAddress()->getPhoneNumber(),
+            email: $customerEntity?->getEmail(),
+            phoneNumber: $orderEntity->getBillingAddress()?->getPhoneNumber(),
             shippingCost: (int) ($orderEntity->getShippingCosts()->getTotalPrice() * 100),
-            shippingVatCommission: (int) ($orderEntity->getShippingCosts()->getCalculatedTaxes()->first()->getTax() * 100),
-            shippingMethod: $orderEntity->getDeliveries()->last()->getShippingMethod()->getName(),
-            paymentMethod: $orderEntity->getTransactions()->last()->getPaymentMethod()->getName(),
+            shippingVatCommission: (int) ($orderEntity->getShippingCosts()->getCalculatedTaxes()->first()?->getTax() * 100),
+            shippingMethod: $orderEntity->getDeliveries()?->last()?->getShippingMethod()?->getName(),
+            paymentMethod: $orderEntity->getTransactions()?->last()?->getPaymentMethod()?->getName(),
             comment: $orderEntity->getCustomerComment(),
             billingCustomer: new CustomerDTO(
-                firstName: $customerEntity->getFirstName(),
-                lastName: $customerEntity->getLastName(),
-                streetName: $orderEntity->getBillingAddress()->getStreet(),
-                zipCode: $orderEntity->getBillingAddress()->getZipcode(),
-                city: $orderEntity->getBillingAddress()->getZipcode(),
-                countryCode: $orderEntity->getBillingAddress()->getCountry()->getIso(),
-                companyName: $orderEntity->getBillingAddress()->getCompany(),
-                vatNumber: $orderEntity->getBillingAddress()->getVatId(),
+                firstName: $customerEntity?->getFirstName(),
+                lastName: $customerEntity?->getLastName(),
+                streetName: $orderEntity->getBillingAddress()?->getStreet(),
+                zipCode: $orderEntity->getBillingAddress()?->getZipcode(),
+                city: $orderEntity->getBillingAddress()?->getZipcode(),
+                countryCode: $orderEntity->getBillingAddress()?->getCountry()?->getIso(),
+                companyName: $orderEntity->getBillingAddress()?->getCompany(),
+                vatNumber: $orderEntity->getBillingAddress()?->getVatId(),
             ),
             shippingCustomer: new CustomerDTO(
-                firstName: $customerEntity->getFirstName(),
-                lastName: $customerEntity->getLastName(),
-                streetName: $orderEntity->getDeliveries()->getShippingAddress()->last()->getStreet(),
-                zipCode: $orderEntity->getDeliveries()->getShippingAddress()->last()->getZipcode(),
-                city: $orderEntity->getDeliveries()->getShippingAddress()->last()->getZipcode(),
-                countryCode: $orderEntity->getDeliveries()->getShippingAddress()->last()->getCountry()->getIso(),
-                companyName: $orderEntity->getDeliveries()->getShippingAddress()->last()->getCompany(),
-                vatNumber: $orderEntity->getDeliveries()->getShippingAddress()->last()->getVatId(),
+                firstName: $customerEntity?->getFirstName(),
+                lastName: $customerEntity?->getLastName(),
+                streetName: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getStreet(),
+                zipCode: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getZipcode(),
+                city: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getZipcode(),
+                countryCode: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getCountry()?->getIso(),
+                companyName: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getCompany(),
+                vatNumber: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getVatId(),
             ),
         );
 
-        foreach ($orderEntity->getLineItems()->filterGoodsFlat() as $lineItem) {
-            $orderDTO->addOrderLine(
-                new OrderLineDTO(
-                    externalIdentifier: $lineItem->getProductId(),
-                    title: $lineItem->getProduct()->getName(),
-                    sku: $lineItem->getProduct()->getProductNumber(),
-                    ean: $lineItem->getProduct()->getEan(),
-                    quantity: $lineItem->getQuantity(),
-                    price: (int) ($lineItem->getTotalPrice() * 100),
-                )
-            );
+        if (null !== $orderEntity->getLineItems()) {
+            foreach ($orderEntity->getLineItems()->filterGoodsFlat() as $lineItem) {
+                $orderDTO->addOrderLine(
+                    new OrderLineDTO(
+                        externalIdentifier: $lineItem->getProductId(),
+                        title: $lineItem->getProduct()?->getName(),
+                        sku: $lineItem->getProduct()?->getProductNumber(),
+                        ean: $lineItem->getProduct()?->getEan(),
+                        quantity: $lineItem->getQuantity(),
+                        price: (int) ($lineItem->getTotalPrice() * 100),
+                    )
+                );
+            }
         }
 
         return new OrderResponseDTO($orderDTO);

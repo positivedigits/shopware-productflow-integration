@@ -9,24 +9,24 @@ use Shopware\Core\Framework\Context;
 
 final readonly class SyncOfferTransformer extends AbstractOfferTransformer
 {
-    public function transform(OfferRequestDTO $offerRequest, Context $context): array
+    public function transform(OfferRequestDTO $offerRequest, Context $context): array  /* @phpstan-ignore-line */
     {
         $product = $this->getProductBySKU($offerRequest->identifier->sku, $context);
 
         return array_merge(
             [
                 'active' => true,
-                'stock' => $offerRequest->offer->sellableQuantity,
+                'stock' => $offerRequest->offer?->sellableQuantity,
                 'price' => [
                     [
                         'currencyId' => $context->getCurrencyId(),
-                        'gross' => $grossPrice = $offerRequest->offer->price / 100,
-                        'net' => round($grossPrice / (1 + ($product->getTax()->getTaxRate() / 100)), 4),
+                        'gross' => $grossPrice = $offerRequest->offer?->price / 100,
+                        'net' => round($grossPrice / (1 + ($product->getTax()?->getTaxRate() / 100)), 4),
                         'linked' => true,
                         'listPrice' => [
                             'currencyId' => $context->getCurrencyId(),
-                            'gross' => $grossPrice = $offerRequest->offer->basePrice / 100,
-                            'net' => round($grossPrice / (1 + ($product->getTax()->getTaxRate() / 100)), 4),
+                            'gross' => $grossPrice = $offerRequest->offer?->basePrice / 100,
+                            'net' => round($grossPrice / (1 + ($product->getTax()?->getTaxRate() / 100)), 4),
                             'linked' => true,
                         ],
                     ],

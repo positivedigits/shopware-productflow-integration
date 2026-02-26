@@ -11,6 +11,10 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 final readonly class OrderSyncer
 {
+    /**
+     * @param ListOpenOrdersTransformer $listOpenOrdersTransformer
+     * @param OpenOrderTransformer      $openOrderTransformer
+     */
     public function __construct(
         #[Autowire(service: ListOpenOrdersTransformer::class)]
         private AbstractOrderTransformer $listOpenOrdersTransformer,

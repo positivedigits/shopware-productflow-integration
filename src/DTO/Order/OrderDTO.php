@@ -9,6 +9,9 @@ use Symfony\Component\Serializer\Attribute\SerializedName;
 
 final class OrderDTO
 {
+    /**
+     * @param string[] $customAttributes
+     */
     public function __construct(
         public ?string $id = null,
         public ?string $name = null,

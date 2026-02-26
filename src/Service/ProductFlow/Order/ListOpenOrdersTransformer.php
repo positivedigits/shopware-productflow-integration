@@ -34,6 +34,9 @@ readonly class ListOpenOrdersTransformer extends AbstractOrderTransformer
         return $orderResponse;
     }
 
+    /**
+     * @return EntityCollection<OrderEntity>
+     */
     private function getOpenOrders(OrderStatus $orderStatus, Context $context): EntityCollection
     {
         $criteria = new Criteria()

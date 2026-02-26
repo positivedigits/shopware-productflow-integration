@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PositiveDigits\Service\ProductFlow\Offer;
 
 use PositiveDigits\DTO\Offer\OfferRequestDTO;
+use Shopware\Core\Content\Product\ProductCollection;
 use Shopware\Core\Content\Product\ProductEntity;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
@@ -15,13 +16,16 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 abstract readonly class AbstractOfferTransformer
 {
+    /**
+     * @param EntityRepository<ProductCollection> $productRepository
+     */
     public function __construct(
         #[Autowire(service: 'product.repository')]
         private EntityRepository $productRepository,
     ) {
     }
 
-    public function transform(OfferRequestDTO $offerRequest, Context $context): array
+    public function transform(OfferRequestDTO $offerRequest, Context $context): array /* @phpstan-ignore-line */
     {
         $product = $this->getProductBySKU($offerRequest->identifier->sku, $context);
 
