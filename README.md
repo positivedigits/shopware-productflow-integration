@@ -31,4 +31,4 @@ After installation, configure the integration in [ProductFlow](https://cloud.pro
 **Ensure that 'Schakel ordersynchronisatie in' and 'Schakel synchronisatie van offers in' are enabled in ProductFlow!**
 
 ## Issues
-If any issues are encountered, please feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new).
+If any issues are encountered, please feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
