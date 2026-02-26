@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PositiveDigits\Controller;
 
 use PositiveDigits\Enum\OrderStatus;
+use PositiveDigits\EventListener\ProductFlowTokenValidationEventListener;
 use Shopware\Core\PlatformRequest;
 use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,7 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+#[Route(defaults: [
+    PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID],
+    ProductFlowTokenValidationEventListener::TOKEN_VALIDATION_REQUIRED => true,
+])]
 final class OrderController extends AbstractController
 {
     #[Route(path: '/orders', name: 'positivedigits.productflow.orders', methods: ['GET'])]

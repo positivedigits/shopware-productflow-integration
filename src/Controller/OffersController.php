@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PositiveDigits\Controller;
 
-use PositiveDigits\DTO\Offer\OfferDTO;
 use PositiveDigits\DTO\Offer\OfferRequestDTO;
+use PositiveDigits\EventListener\ProductFlowTokenValidationEventListener;
 use PositiveDigits\Service\Offer\OfferSyncer;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\PlatformRequest;
@@ -16,7 +16,10 @@ use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
-#[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID]])]
+#[Route(defaults: [
+    PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StorefrontRouteScope::ID],
+    ProductFlowTokenValidationEventListener::TOKEN_VALIDATION_REQUIRED => true,
+])]
 final class OffersController extends AbstractController
 {
     public function __construct(
@@ -38,7 +41,8 @@ final class OffersController extends AbstractController
     #[Route(path: '/offer', name: 'positivedigits.productflow.offers.delete', methods: ['DELETE'])]
     public function delete(
         #[MapRequestPayload(acceptFormat: JsonEncoder::FORMAT)]
-        OfferDTO $offer,
+        OfferRequestDTO $offerRequest,
+        Context $context,
     ): Response {
         return new Response();
     }

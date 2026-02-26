@@ -8,8 +8,8 @@ final readonly class OfferIdentifierDTO
 {
     public function __construct(
         public string $sku,
-        public string $ean,
-        public string $mpn,
+        public ?string $ean = null,
+        public ?string $mpn = null,
     ) {
     }
 }

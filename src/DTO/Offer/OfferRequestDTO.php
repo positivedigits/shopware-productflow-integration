@@ -11,7 +11,7 @@ final readonly class OfferRequestDTO
     public function __construct(
         #[SerializedName('identifiers')]
         public OfferIdentifierDTO $identifier,
-        public OfferDTO $offer,
+        public ?OfferDTO $offer = null,
     ) {
     }
 }
