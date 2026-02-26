@@ -1,0 +1,39 @@
+name: Feature request
+description: A new functionality or addition.
+title: '[Feature]: '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        _Please write your feature request in English. Using proper Markdown formatting is highly appreciated, please see this [cheat sheet](https://www.markdownguide.org/cheat-sheet/) for a quick reference._
+  - type: textarea
+    id: description
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: A clear and concise description of what the problem is.
+      placeholder: Clear and concise description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you would like
+      description: A clear and concise description of what you want to happen.
+      placeholder: Your preferred solution.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you have considered
+      description: A clear and concise description of any alternative solutions or features you have considered.
+      placeholder: Clear and concise description of any alternative solutions.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: If you have any additional context, please put it here. This is also a good place for your screenshots, if any.
+    validations:
+      required: false
