@@ -14,6 +14,8 @@ final class OrderDTO
      */
     public function __construct(
         public ?string $id = null,
+        #[SerializedName('external_identifiers')]
+        public ?string $externalIdentifier = null,
         public ?string $name = null,
         #[SerializedName('currency_code')]
         public ?string $currencyCode = null,

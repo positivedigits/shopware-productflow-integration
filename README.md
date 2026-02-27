@@ -9,6 +9,7 @@ Implements the missing integration for [ProductFlow's](www.productflow.com/) off
 The integration supports the following features:
 1. Offer updates.
 2. Order synchronisation.
+3. Automatically updates the order with a track and trace code.
 
 ## Installation
 Installation through composer is preferred.
@@ -26,13 +27,14 @@ Next, install the plugin.
 ## Configuration
 After installation, configure the integration in [ProductFlow](https://cloud.productflow.com/marketplace)
 
-| Name           | Description                                                                                                                                                    | Example                                  |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| Token          | Authorization token passed from ProductFlow to Shopware in the `Authorization` header. *Note*: this value should be configured in the plugin settings as well. | `d82949c3-29d1-4710-8e73-5d62ce8a60cd`   |
-| Offer endpoint | The URL on which ProductFlow fetches offers from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/offer`              |
-| Order endpoint | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/orders?status=open` |
+| Name              | Description                                                                                                                                                       | Example                                  |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| Token             | Authorization token passed from ProductFlow to Shopware in the `Authorization` header. *Note*: this value should be configured in the plugin settings as well.    | `d82949c3-29d1-4710-8e73-5d62ce8a60cd`   |
+| Offer endpoint    | The URL on which ProductFlow fetches offers from Shopware. Replace `example.com` with your shops domain!                                                          | `https://example.com/offer`              |
+| Order endpoint    | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                          | `https://example.com/orders?status=open` |
+| Shipment endpoint | The URL on which ProductFlow submits shipment updates. Replace `example.com` with your shops domain! *Note*: this is required for the order endpoint to function. | `https://example.com/shipments`          |
 
-**Ensure that 'Schakel ordersynchronisatie in' and 'Schakel synchronisatie van offers in' are enabled in ProductFlow!**
+**Ensure that `Schakel ordersynchronisatie in` and `Schakel synchronisatie van offers in` are enabled in ProductFlow!**
 
 Finally, make sure the authorization token set in ProductFlow is also provided in the Shopware plugin configuration.
 
