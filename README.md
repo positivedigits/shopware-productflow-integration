@@ -26,11 +26,11 @@ Next, install the plugin.
 ## Configuration
 After installation, configure the integration in [ProductFlow](https://cloud.productflow.com/marketplace)
 
-| Name           | Description                                                                                                                                                    | Example                                |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
-| Token          | Authorization token passed from ProductFlow to Shopware in the `Authorization` header. *Note*: this value should be configured in the plugin settings as well. | `d82949c3-29d1-4710-8e73-5d62ce8a60cd` |
-| Offer endpoint | The URL on which ProductFlow fetches offers from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/offer`            |
-| Order endpoint | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/orders`           |
+| Name           | Description                                                                                                                                                    | Example                                  |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
+| Token          | Authorization token passed from ProductFlow to Shopware in the `Authorization` header. *Note*: this value should be configured in the plugin settings as well. | `d82949c3-29d1-4710-8e73-5d62ce8a60cd`   |
+| Offer endpoint | The URL on which ProductFlow fetches offers from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/offer`              |
+| Order endpoint | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                       | `https://example.com/orders?status=open` |
 
 **Ensure that 'Schakel ordersynchronisatie in' and 'Schakel synchronisatie van offers in' are enabled in ProductFlow!**
 
