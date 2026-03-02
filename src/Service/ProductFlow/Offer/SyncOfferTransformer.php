@@ -17,6 +17,7 @@ final readonly class SyncOfferTransformer extends AbstractOfferTransformer
             [
                 'active' => true,
                 'stock' => $offerRequest->offer?->sellableQuantity,
+                'isCloseout' => true,
                 'price' => [
                     [
                         'currencyId' => $context->getCurrencyId(),
