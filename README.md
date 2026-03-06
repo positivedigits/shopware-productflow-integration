@@ -1,5 +1,5 @@
 # Shopware ProductFlow Integration
-Implements the missing integration for [ProductFlow's](https://www.productflow.com/) offers and orders as a custom datamodel connector for [Shopware 6](https://www.shopware.com/en/).
+Integrates [ProductFlow's](https://www.productflow.com/) offers and orders as a custom datamodel connector for [Shopware 6](https://www.shopware.com/en/).
 
 ## Requirements
 1. PHP version 8.4 or higher.
