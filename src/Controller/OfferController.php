@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
     PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [ProductFlowRouteScope::ID],
     ProductFlowTokenValidationEventListener::TOKEN_VALIDATION_REQUIRED => true,
 ])]
-final class OffersController extends AbstractProductFlowController
+final class OfferController extends AbstractProductFlowController
 {
     public function __construct(
         private readonly OfferSyncer $offerSyncer,
