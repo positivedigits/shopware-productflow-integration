@@ -40,7 +40,7 @@ final readonly class OpenOrderTransformer extends AbstractOrderTransformer
                 lastName: $customerEntity?->getLastName(),
                 streetName: $orderEntity->getBillingAddress()?->getStreet(),
                 zipCode: $orderEntity->getBillingAddress()?->getZipcode(),
-                city: $orderEntity->getBillingAddress()?->getZipcode(),
+                city: $orderEntity->getBillingAddress()?->getCity(),
                 countryCode: $orderEntity->getBillingAddress()?->getCountry()?->getIso(),
                 companyName: $orderEntity->getBillingAddress()?->getCompany(),
                 vatNumber: $orderEntity->getBillingAddress()?->getVatId(),
@@ -48,12 +48,12 @@ final readonly class OpenOrderTransformer extends AbstractOrderTransformer
             shippingCustomer: new CustomerDTO(
                 firstName: $customerEntity?->getFirstName(),
                 lastName: $customerEntity?->getLastName(),
-                streetName: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getStreet(),
-                zipCode: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getZipcode(),
-                city: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getZipcode(),
-                countryCode: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getCountry()?->getIso(),
-                companyName: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getCompany(),
-                vatNumber: $orderEntity->getDeliveries()?->getShippingAddress()->last()?->getVatId(),
+                streetName: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getStreet(),
+                zipCode: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getZipcode(),
+                city: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getCity(),
+                countryCode: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getCountry()?->getIso(),
+                companyName: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getCompany(),
+                vatNumber: $orderEntity->getDeliveries()?->last()?->getShippingOrderAddress()?->getVatId(),
             ),
         );
 

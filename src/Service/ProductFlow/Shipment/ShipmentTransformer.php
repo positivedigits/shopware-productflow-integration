@@ -23,11 +23,15 @@ readonly class ShipmentTransformer extends AbstractShipmentTransformer
 
         $order = $this->getOrderByExternalId($shipmentRequest->order->externalIdentifier, $context);
 
+        if (null === $order->getDeliveries()?->last()) {
+            throw new BadRequestException("Order with number '{$order->getOrderNumber()}' has no deliveries.");
+        }
+
         return [
             'id' => $order->getId(),
             'deliveries' => [
                 [
-                    'id' => $order->getDeliveries()?->last()?->getId(),
+                    'id' => $order->getDeliveries()->last()->getId(),
                     'trackingCodes' => [
                         $shipmentRequest->trackAndTrace,
                     ],
