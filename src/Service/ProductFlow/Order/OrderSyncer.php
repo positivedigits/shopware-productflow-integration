@@ -8,6 +8,7 @@ use PositiveDigits\DTO\Order\OrderResponseDTO;
 use PositiveDigits\DTO\Order\OrdersResponseDTO;
 use Shopware\Core\Framework\Context;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final readonly class OrderSyncer
 {
@@ -20,12 +21,17 @@ final readonly class OrderSyncer
         private AbstractOrderTransformer $listOpenOrdersTransformer,
         #[Autowire(service: OpenOrderTransformer::class)]
         private AbstractOrderTransformer $openOrderTransformer,
+        private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
     public function listOpenOrders(OrderStatus $orderStatus, Context $context): OrdersResponseDTO
     {
-        return $this->listOpenOrdersTransformer->transform($orderStatus, $context);
+        $ordersResponseDTO = $this->listOpenOrdersTransformer->transform($orderStatus, $context);
+
+        $this->eventDispatcher->dispatch(new AfterListOpenOrderEvent($orderStatus, $ordersResponseDTO, $context));
+
+        return $ordersResponseDTO;
     }
 
     public function getOpenOrder(

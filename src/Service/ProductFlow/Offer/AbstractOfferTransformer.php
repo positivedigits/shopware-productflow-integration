@@ -25,7 +25,10 @@ abstract readonly class AbstractOfferTransformer
     ) {
     }
 
-    public function transform(OfferRequestDTO $offerRequest, Context $context): array /* @phpstan-ignore-line */
+    /**
+     * @return array<string, mixed>
+     */
+    public function transform(OfferRequestDTO $offerRequest, Context $context): array
     {
         $product = $this->getProductBySKU($offerRequest->identifier->sku, $context);
 

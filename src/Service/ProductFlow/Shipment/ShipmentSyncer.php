@@ -9,6 +9,7 @@ use Shopware\Core\Checkout\Order\OrderCollection;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final readonly class ShipmentSyncer
 {
@@ -21,13 +22,16 @@ final readonly class ShipmentSyncer
         private AbstractShipmentTransformer $shipmentTransformer,
         #[Autowire(service: 'order.repository')]
         private EntityRepository $orderRepository,
+        private EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
     public function sync(ShipmentRequestDTO $shipmentRequest, Context $context): void
     {
-        $order = $this->shipmentTransformer->transform($shipmentRequest, $context);
+        $orderData = $this->shipmentTransformer->transform($shipmentRequest, $context);
 
-        $this->orderRepository->update([$order], $context);
+        $this->orderRepository->update([$orderData], $context);
+
+        $this->eventDispatcher->dispatch(new AfterShipmentSyncEvent($shipmentRequest, $orderData, $context));
     }
 }

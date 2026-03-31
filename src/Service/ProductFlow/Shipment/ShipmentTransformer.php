@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 
 readonly class ShipmentTransformer extends AbstractShipmentTransformer
 {
-    public function transform(ShipmentRequestDTO $shipmentRequest, Context $context): array /* @phpstan-ignore-line */
+    /**
+     * @return array<string, mixed>
+     */
+    public function transform(ShipmentRequestDTO $shipmentRequest, Context $context): array
     {
         $externalIdentifier = $shipmentRequest->order?->externalIdentifier;
 

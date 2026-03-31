@@ -9,7 +9,10 @@ use Shopware\Core\Framework\Context;
 
 final readonly class UnlistOfferTransformer extends AbstractOfferTransformer
 {
-    public function transform(OfferRequestDTO $offerRequest, Context $context): array /* @phpstan-ignore-line */
+    /**
+     * @return array<string, mixed>
+     */
+    public function transform(OfferRequestDTO $offerRequest, Context $context): array
     {
         return array_merge(
             [
