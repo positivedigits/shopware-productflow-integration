@@ -38,5 +38,15 @@ After installation, configure the integration in [ProductFlow](https://cloud.pro
 
 Finally, make sure the authorization token set in ProductFlow is also provided in the Shopware plugin configuration.
 
+## Events
+The plugin dispatches the following events.
+
+| Event                     | Description                                                |
+|---------------------------|------------------------------------------------------------|
+| `AfterOfferSyncEvent`     | Dispatched after an offer is synchronized.                 |
+| `AfterOfferUnlistEvent`   | Dispatched after an offer is unlisted.                     |
+| `AfterListOpenOrderEvent` | Dispatched after open orders are fetched.                  |
+| `AfterShipmentSyncEvent`  | Dispatched after a shipment tracking code is synchronized. |
+
 ## Issues
 If any issues are encountered, please feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
