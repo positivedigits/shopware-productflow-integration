@@ -41,12 +41,12 @@ Finally, make sure the authorization token set in ProductFlow is also provided i
 ## Events
 The plugin dispatches the following events.
 
-| Event                     | Description                                                |
-|---------------------------|------------------------------------------------------------|
-| `AfterOfferSyncEvent`     | Dispatched after an offer is synchronized.                 |
-| `AfterOfferUnlistEvent`   | Dispatched after an offer is unlisted.                     |
-| `AfterListOpenOrderEvent` | Dispatched after open orders are fetched.                  |
-| `AfterShipmentSyncEvent`  | Dispatched after a shipment tracking code is synchronized. |
+| Event                                                                                                  | Description                                                |
+|--------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
+| [`AfterOfferSyncEvent`](src/Service/ProductFlow/Offer/AfterOfferSyncEvent.php)                         | Dispatched after an offer is synchronized.                 |
+| [`AfterOfferUnlistEvent`](src/Service/ProductFlow/Offer/AfterOfferUnlistEvent.php)                     | Dispatched after an offer is unlisted.                     |
+| [`AfterListOpenOrderEvent`](src/Service/ProductFlow/Order/AfterListOpenOrderEvent.php)                 | Dispatched after open orders are fetched.                  |
+| [`AfterShipmentSyncEvent`](src/Service/ProductFlow/Shipment/AfterShipmentSyncEvent.php)                | Dispatched after a shipment tracking code is synchronized. |
 
 ## Issues
 If any issues are encountered, please feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
