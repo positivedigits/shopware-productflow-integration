@@ -82,7 +82,7 @@ final readonly class OpenOrderTransformer extends AbstractOrderTransformer
         Context $context,
     ): OrderEntity {
         $criteria = new Criteria([$id])
-            ->addFilter(new EqualsFilter('stateMachineState.technicalName', $orderStatus->toShopwareStatus()))
+            ->addFilter(new EqualsFilter('primaryOrderTransaction.stateMachineState.technicalName', $orderStatus->toShopwareStatus()))
             ->addAssociation('currency')
             ->addAssociation('customer')
             ->addAssociation('billingAddress.country')
