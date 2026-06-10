@@ -23,6 +23,10 @@
         "phpstan/phpstan": "^2.1"
     },
     "scripts": {
+        "all": [
+            "@phpstan",
+            "@php-cs"
+        ],
         "phpstan": "@php vendor/bin/phpstan analyze",
         "php-cs": "@php vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
         "php-cs-fix": "@php vendor/bin/php-cs-fixer fix --verbose --diff"
