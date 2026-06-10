@@ -16,7 +16,7 @@ readonly class ListOpenOrdersTransformer extends AbstractOrderTransformer
 {
     public function transform(OrderStatus $orderStatus, Context $context): OrdersResponseDTO
     {
-        $orders = $this->getOpenOrders($orderStatus, $context);
+        $orders = $this->getOrdersByStatus($orderStatus, $context);
 
         $orderResponse = new OrdersResponseDTO();
 
@@ -37,7 +37,7 @@ readonly class ListOpenOrdersTransformer extends AbstractOrderTransformer
     /**
      * @return EntityCollection<OrderEntity>
      */
-    private function getOpenOrders(OrderStatus $orderStatus, Context $context): EntityCollection
+    private function getOrdersByStatus(OrderStatus $orderStatus, Context $context): EntityCollection
     {
         $criteria = new Criteria()
             ->addFilter(new EqualsFilter('stateMachineState.technicalName', $orderStatus->toShopwareStatus()));

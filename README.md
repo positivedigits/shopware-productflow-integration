@@ -31,7 +31,7 @@ After installation, configure the integration in [ProductFlow](https://cloud.pro
 |-------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
 | Token             | Authorization token passed from ProductFlow to Shopware in the `Authorization` header. *Note*: this value should be configured in the plugin settings as well.    | `d82949c3-29d1-4710-8e73-5d62ce8a60cd`   |
 | Offer endpoint    | The URL on which ProductFlow fetches offers from Shopware. Replace `example.com` with your shops domain!                                                          | `https://example.com/offer`              |
-| Order endpoint    | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                          | `https://example.com/orders?status=open` |
+| Order endpoint    | The URL on which ProductFlow fetches orders from Shopware. Replace `example.com` with your shops domain!                                                          | `https://example.com/orders?status=paid` |
 | Shipment endpoint | The URL on which ProductFlow submits shipment updates. Replace `example.com` with your shops domain! *Note*: this is required for the order endpoint to function. | `https://example.com/shipments`          |
 
 **Ensure that `Schakel ordersynchronisatie in` and `Schakel synchronisatie van offers in` are enabled in ProductFlow!**

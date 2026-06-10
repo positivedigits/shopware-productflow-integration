@@ -9,11 +9,13 @@ use Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStat
 enum OrderStatus: string
 {
     case OPEN = 'open';
+    case PAID = 'paid';
 
     public function toShopwareStatus(): string
     {
         return match ($this) {
             OrderStatus::OPEN => OrderTransactionStates::STATE_OPEN,
+            OrderStatus::PAID => OrderTransactionStates::STATE_PAID,
         };
     }
 }
