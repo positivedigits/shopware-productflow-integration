@@ -12,6 +12,7 @@ final readonly class UnlistOfferTransformer extends AbstractOfferTransformer
     /**
      * @return array<string, mixed>
      */
+    #[\Override]
     public function transform(OfferRequestDTO $offerRequest, Context $context): array
     {
         return array_merge(

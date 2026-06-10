@@ -8,6 +8,7 @@ use PositiveDigits\DTO\Customer\CustomerDTO;
 use PositiveDigits\DTO\Order\OrderDTO;
 use PositiveDigits\DTO\Order\OrderLineDTO;
 use PositiveDigits\DTO\Order\OrderResponseDTO;
+use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemCollection;
 use Shopware\Core\Checkout\Order\OrderEntity;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -57,7 +58,7 @@ final readonly class OpenOrderTransformer extends AbstractOrderTransformer
             ),
         );
 
-        if (null !== $orderEntity->getLineItems()) {
+        if ($orderEntity->getLineItems() instanceof OrderLineItemCollection) {
             foreach ($orderEntity->getLineItems()->filterGoodsFlat() as $lineItem) {
                 $orderDTO->addOrderLine(
                     new OrderLineDTO(

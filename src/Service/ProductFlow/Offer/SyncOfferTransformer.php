@@ -6,17 +6,19 @@ namespace PositiveDigits\Service\ProductFlow\Offer;
 
 use PositiveDigits\DTO\Offer\OfferRequestDTO;
 use Shopware\Core\Framework\Context;
+use Shopware\Core\System\Tax\TaxEntity;
 
 final readonly class SyncOfferTransformer extends AbstractOfferTransformer
 {
     /**
      * @return array<string, mixed>
      */
+    #[\Override]
     public function transform(OfferRequestDTO $offerRequest, Context $context): array
     {
         $product = $this->getProductBySKU($offerRequest->identifier->sku, $context);
 
-        if (null === $product->getTax()) {
+        if (!$product->getTax() instanceof TaxEntity) {
             throw new \RuntimeException("Product with number '{$product->getProductNumber()}' has no tax rate assigned.");
         }
 

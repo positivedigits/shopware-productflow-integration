@@ -11,8 +11,8 @@ use PositiveDigits\Service\ProductFlow\Order\OrderSyncer;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\PlatformRequest;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
@@ -31,11 +31,11 @@ final class OrderController extends AbstractProductFlowController
      * @throws ExceptionInterface
      */
     #[Route(path: '/orders', name: 'positivedigits.productflow.orders', methods: ['GET'])]
-    public function orders(Request $request, Context $context): Response
+    public function orders(Request $request, Context $context): JsonResponse
     {
         $status = $request->query->getEnum('status', OrderStatus::class);
 
-        if (null === $status) {
+        if (!$status instanceof \BackedEnum) {
             throw new BadRequestException('Missing required parameter "status".');
         }
 
@@ -45,11 +45,11 @@ final class OrderController extends AbstractProductFlowController
     }
 
     #[Route(path: '/orders/{id}', name: 'positivedigits.productflow.order', methods: ['GET'])]
-    public function order(string $id, Request $request, Context $context): Response
+    public function order(string $id, Request $request, Context $context): JsonResponse
     {
         $status = $request->query->getEnum('status', OrderStatus::class);
 
-        if (null === $status) {
+        if (!$status instanceof \BackedEnum) {
             throw new BadRequestException('Missing required parameter "status".');
         }
 
