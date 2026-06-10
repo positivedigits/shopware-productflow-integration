@@ -11,6 +11,7 @@ use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
 
 readonly class ListOpenOrdersTransformer extends AbstractOrderTransformer
 {
@@ -40,7 +41,9 @@ readonly class ListOpenOrdersTransformer extends AbstractOrderTransformer
     private function getOrdersByStatus(OrderStatus $orderStatus, Context $context): EntityCollection
     {
         $criteria = new Criteria()
-            ->addFilter(new EqualsFilter('primaryOrderTransaction.stateMachineState.technicalName', $orderStatus->toShopwareStatus()));
+            ->addFilter(new EqualsFilter('primaryOrderTransaction.stateMachineState.technicalName', $orderStatus->toShopwareStatus()))
+            ->addSorting(new FieldSorting('createdAt', FieldSorting::DESCENDING))
+            ->setLimit(100);
 
         /** @var EntityCollection<OrderEntity> $orders */
         $orders = $this->orderRepository->search($criteria, $context)->getEntities();
