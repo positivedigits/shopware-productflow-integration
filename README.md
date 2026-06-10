@@ -36,6 +36,10 @@ After installation, configure the integration in [ProductFlow](https://cloud.pro
 
 **Ensure that `Schakel ordersynchronisatie in` and `Schakel synchronisatie van offers in` are enabled in ProductFlow!**
 
+Even though the `OrderTransactionStates::STATE_OPEN` (`open`) is supported, this is most likely not desirable.
+When the `open` parameter is passed to the orders endpoint **all** orders are imported, regardless of payment status.
+Therefore, the  `OrderTransactionStates::STATE_PAID` (`paid`) is the recommended default.
+
 Finally, make sure the authorization token set in ProductFlow is also provided in the Shopware plugin configuration.
 
 ## Events
