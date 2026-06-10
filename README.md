@@ -42,6 +42,14 @@ Therefore, the  `OrderTransactionStates::STATE_PAID` (`paid`) is the recommended
 
 Finally, make sure the authorization token set in ProductFlow is also provided in the Shopware plugin configuration.
 
+## Order Transaction State Reference
+The `status` query parameter on the `/orders` endpoint supports the following values.
+
+| `status` parameter | `OrderTransactionStates` constant    | Description                                                               |
+|--------------------|--------------------------------------|---------------------------------------------------------------------------|
+| `open`             | `OrderTransactionStates::STATE_OPEN` | Imports **all** orders regardless of payment status. **Not** recommended. |
+| `paid`             | `OrderTransactionStates::STATE_PAID` | Imports only orders with a paid transaction. Recommended default.         |
+
 ## Events
 The plugin dispatches the following events.
 
@@ -53,4 +61,4 @@ The plugin dispatches the following events.
 | [`AfterShipmentSyncEvent`](src/Service/ProductFlow/Shipment/AfterShipmentSyncEvent.php)                | Dispatched after a shipment tracking code is synchronized. |
 
 ## Issues
-If any issues are encountered, please feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
+Found a bug or have a problem? Feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
