@@ -28,6 +28,8 @@ final readonly class ShipmentSyncer
 
     public function sync(ShipmentRequestDTO $shipmentRequest, Context $context): void
     {
+        $this->eventDispatcher->dispatch(new BeforeShipmentSyncEvent($shipmentRequest, $context));
+
         $orderData = $this->shipmentTransformer->transform($shipmentRequest, $context);
 
         $this->orderRepository->update([$orderData], $context);

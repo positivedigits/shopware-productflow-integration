@@ -27,6 +27,8 @@ final readonly class OrderSyncer
 
     public function listOpenOrders(OrderStatus $orderStatus, Context $context): OrdersResponseDTO
     {
+        $this->eventDispatcher->dispatch(new BeforeListOpenOrderEvent($orderStatus, $context));
+
         $ordersResponseDTO = $this->listOpenOrdersTransformer->transform($orderStatus, $context);
 
         $this->eventDispatcher->dispatch(new AfterListOpenOrderEvent($orderStatus, $ordersResponseDTO, $context));

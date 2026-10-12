@@ -29,6 +29,8 @@ readonly class OfferSyncer
 
     public function sync(OfferRequestDTO $offerRequest, Context $context): void
     {
+        $this->eventDispatcher->dispatch(new BeforeOfferSyncEvent($offerRequest, $context));
+
         $productData = $this->syncOfferTransformer->transform($offerRequest, $context);
 
         $this->productRepository->update([$productData], $context);
@@ -38,6 +40,8 @@ readonly class OfferSyncer
 
     public function unlist(OfferRequestDTO $offerRequest, Context $context): void
     {
+        $this->eventDispatcher->dispatch(new BeforeOfferUnlistEvent($offerRequest, $context));
+
         $productData = $this->unlistOfferTransformer->transform($offerRequest, $context);
 
         $this->productRepository->update([$productData], $context);

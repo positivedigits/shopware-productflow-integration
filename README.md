@@ -53,12 +53,16 @@ The `status` query parameter on the `/orders` endpoint supports the following va
 ## Events
 The plugin dispatches the following events.
 
-| Event                                                                                                  | Description                                                |
-|--------------------------------------------------------------------------------------------------------|------------------------------------------------------------|
-| [`AfterOfferSyncEvent`](src/Service/ProductFlow/Offer/AfterOfferSyncEvent.php)                         | Dispatched after an offer is synchronized.                 |
-| [`AfterOfferUnlistEvent`](src/Service/ProductFlow/Offer/AfterOfferUnlistEvent.php)                     | Dispatched after an offer is unlisted.                     |
-| [`AfterListOpenOrderEvent`](src/Service/ProductFlow/Order/AfterListOpenOrderEvent.php)                 | Dispatched after open orders are fetched.                  |
-| [`AfterShipmentSyncEvent`](src/Service/ProductFlow/Shipment/AfterShipmentSyncEvent.php)                | Dispatched after a shipment tracking code is synchronized. |
+| Event                                                                                                  | Description                                                 |
+|--------------------------------------------------------------------------------------------------------|-------------------------------------------------------------|
+| [`BeforeOfferSyncEvent`](src/Service/ProductFlow/Offer/BeforeOfferSyncEvent.php)                       | Dispatched before an offer is synchronized.                 |
+| [`AfterOfferSyncEvent`](src/Service/ProductFlow/Offer/AfterOfferSyncEvent.php)                         | Dispatched after an offer is synchronized.                  |
+| [`BeforeOfferUnlistEvent`](src/Service/ProductFlow/Offer/BeforeOfferUnlistEvent.php)                   | Dispatched before an offer is unlisted.                     |
+| [`AfterOfferUnlistEvent`](src/Service/ProductFlow/Offer/AfterOfferUnlistEvent.php)                     | Dispatched after an offer is unlisted.                      |
+| [`BeforeListOpenOrderEvent`](src/Service/ProductFlow/Order/BeforeListOpenOrderEvent.php)               | Dispatched before open orders are fetched.                  |
+| [`AfterListOpenOrderEvent`](src/Service/ProductFlow/Order/AfterListOpenOrderEvent.php)                 | Dispatched after open orders are fetched.                   |
+| [`BeforeShipmentSyncEvent`](src/Service/ProductFlow/Shipment/BeforeShipmentSyncEvent.php)              | Dispatched before a shipment tracking code is synchronized. |
+| [`AfterShipmentSyncEvent`](src/Service/ProductFlow/Shipment/AfterShipmentSyncEvent.php)                | Dispatched after a shipment tracking code is synchronized.  |
 
 ## Issues
 Found a bug or have a problem? Feel free to [open an issue](https://github.com/positivedigits/shopware-productflow-integration/issues/new?template=bug_report.yml).
